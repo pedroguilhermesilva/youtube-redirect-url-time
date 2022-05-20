@@ -1,0 +1,14 @@
+{
+  "name": "YouTube URl Time",
+  "version": "1.0.0",
+  "description": "Redirect YOUTUBE for another URL beacause de time",
+  "manifest_version": 3,
+  "author": "Pedro Silva",
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ]
+}
