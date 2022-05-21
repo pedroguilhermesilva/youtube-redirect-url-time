@@ -1,17 +1,30 @@
 const config = {
   timeStart: 9,
   timeEnd: 20,
+  allUrls: ["youtube"],
+};
+
+const validateDate = () => {
+  let validated = false;
+  const hoursNow = new Date().getHours();
+  const day = new Date().getDay();
+
+  config.allUrls.forEach((url) => {
+    if (
+      window.location.href.includes(url) &&
+      hoursNow > config.timeStart &&
+      hoursNow < config.timeEnd &&
+      day !== 0 &&
+      day !== 6
+    ) {
+      validated = true;
+    }
+  });
+  return validated;
 };
 
 const interval = setInterval(() => {
-  const url = window.location.href;
-  const hoursNow = new Date().getHours();
-
-  if (
-    url.includes("youtube.com") &&
-    hoursNow > config.timeStart &&
-    hoursNow < config.timeEnd
-  ) {
+  if (validateDate()) {
     window.location.replace("https://www.google.com/");
     clearInterval(interval);
   } else {
